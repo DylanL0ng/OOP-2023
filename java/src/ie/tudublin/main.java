@@ -1,13 +1,29 @@
 package ie.tudublin;
 
-public class main
+public class Main
 {
-    public static void main(String[] args) {
-        Dog dog = new Dog();
 
-        dog.setName("Martin");
-        System.out.println("The dogs name is " + dog.getName());
-        dog.speak();
-        dog.speak();
+	public static void helloProcessing()
+	{
+		String[] a = {"MAIN"};
+        processing.core.PApplet.runSketch( a, new HelloProcessing());
     }
+
+	public static void bugZap()
+	{
+		String[] a = {"MAIN"};
+        processing.core.PApplet.runSketch( a, new BugZap());
+    }
+	
+	public static void main(String[] args)
+	{
+		System.out.println("Hello world");
+		
+		Dog penny = new Dog();
+		penny.setName("Penny");
+		penny.speak();
+
+		bugZap();
+	}
+	
 }
