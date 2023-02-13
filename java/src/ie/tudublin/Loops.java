@@ -30,8 +30,8 @@ public class Loops extends PApplet {
 		// drawDiagonalLines();
 		// drawDiagonalCrossLines();
 		// drawColourfulCircleMatrix();
-		// drawGridSystem();
-		drawCheckerboard();
+		drawGridSystem();
+		// drawCheckerboard();
 		// drawColourfulBars();
 	}
 
