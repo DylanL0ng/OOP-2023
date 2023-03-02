@@ -40,7 +40,7 @@ public class StarMap extends PApplet {
 
     void loadStars()
     {
-        Table table = loadTable("HabHYG15ly.csv", "header");
+        Table table = loadTable("./data/HabHYG15ly.csv", "header");
         for(TableRow r:table.rows())
         {
             Star s = new Star(r);
