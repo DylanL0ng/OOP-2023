@@ -1,6 +1,6 @@
 package ie.tudublin;
 
-public class Main
+public class main
 {
 
 	public static void helloProcessing()
