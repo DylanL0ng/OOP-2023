@@ -13,12 +13,6 @@ public class Star
     private float zG;
     private float absMag;  
 
-    @Override
-    public String toString() {
-        return "Star [absMag=" + absMag + ", displayName=" + displayName + ", distance=" + distance + ", hab=" + hab
-                + ", xG=" + xG + ", yG=" + yG + ", zG=" + zG + "]";
-    }
-
     public Star(TableRow tr)
     {
         this(
@@ -89,7 +83,6 @@ public class Star
     {
         float x = PApplet.map(xG, -5, 5, pa.border, pa.width - pa.border);
         float y = PApplet.map(yG, -5, 5, pa.border, pa.height - pa.border);
-
         
         pa.stroke(255, 255, 0);
         pa.line(x, y -5, x, y + 5);
