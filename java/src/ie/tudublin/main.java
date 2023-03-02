@@ -1,6 +1,6 @@
 package ie.tudublin;
 
-public class main
+public class Main
 {
 
 	public static void helloProcessing()
@@ -13,7 +13,7 @@ public class main
 	{
 		String[] a = {"MAIN"};
         processing.core.PApplet.runSketch( a, new Loops());
-    }
+	}
 
 	public static void bugZap()
 	{
