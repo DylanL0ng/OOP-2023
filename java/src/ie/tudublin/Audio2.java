@@ -14,6 +14,7 @@ public class Audio2 extends PApplet
     AudioPlayer ap;
     AudioInput ai;
     AudioBuffer ab;
+    PitchSpeller ps;
     FFT fft;
 
     float lerpedBuffer[];
@@ -26,12 +27,16 @@ public class Audio2 extends PApplet
     public void setup()
     {
         m = new Minim(this);
-        ai = m.getLineIn(Minim.MONO, width, 44100, 16);
-        ab = ai.mix;
+        ap = m.loadFile("./OOP-2023/data/scale.wav", 1024);
+        ab = ap.mix;
+        ap.play();
+        // ai = m.getLineIn(Minim.MONO, width, 44100, 16);
         lerpedBuffer = new float[width];
         colorMode(HSB);
 
         fft = new FFT(width, 44100);
+
+        ps = new PitchSpeller();
     }
 
 
@@ -56,12 +61,22 @@ public class Audio2 extends PApplet
         strokeWeight(1.0f);
         for (int i = 0; i < fft.specSize() * 0.25; i++)
         {
-            line(i * 4, height, i * 4, height - fft.getBand(i) * 10);
+            line(i * 4, height, i * 4, height - fft.getBand(i));
         }
 
-        
-        
-        // System.out.println(fft.getSpectrumImaginary().);
+        int highestBin = 0;
+		for(int i = 0 ; i < fft.specSize() ; i ++)
+		{
+			line(i, 0, i, fft.getBand(i) * 100);
+			if (fft.getBand(i) > fft.getBand(highestBin))
+			{
+				highestBin = i;
+			}
+		}
+
+		float freq1 = fft.indexToFreq(highestBin);
+        text(ps.spell(freq1), width / 2, height * 0.2f);
+
     }
 
     float map1(float a, float b, float c, float d, float e)
