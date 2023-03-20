@@ -5,6 +5,7 @@ import processing.core.PVector;
 
 public class Ship {
     private PVector pos;
+    private PVector fwd;
     private PApplet p;
 
     private float rot;
@@ -21,19 +22,13 @@ public class Ship {
         this.halfSize = size / 2;
         
         pos = new PVector(x, y);
+        fwd = new PVector(0, 0);
         this.p = p;
     }
 
     public void render()
     {
-        // p.beginShape();
-        // p.vertex(pos.x - halfSize, pos.y + halfSize);
-        // p.vertex(pos.x - halfSize, pos.y - 0);
-        // p.vertex(pos.x - this.size, pos.y - this.size);
-        // p.vertex(pos.x - this.size / 2, pos.y - halfSize);
-        // p.vertex(pos.x - 0, pos.y + this.size);
-        // p.endShape();
-
+        p.pushMatrix();
         p.translate(this.pos.x, this.pos.y);
         p.rotate(this.rot);
 
@@ -42,12 +37,17 @@ public class Ship {
         p.line(0, - halfSize, halfSize, + halfSize);
         p.line(halfSize, halfSize, 0, 0);
         p.line(0, 0, - halfSize, + halfSize);
+        p.popMatrix();
     }
 
     public void move()
     {
+        fwd.x = PApplet.sin(rot);
+        fwd.y = -PApplet.cos(rot);
+
         if (!p.keyPressed) return;
 
+        // fwd.x = 
         switch(p.keyCode)
         {
             case PApplet.LEFT:
@@ -57,10 +57,12 @@ public class Ship {
                 this.rot+= 0.1f;
             break;
             case PApplet.DOWN:
-                pos.y++;
-            break;
-            case PApplet.UP:
-                pos.y--;
+                pos.x -= fwd.x;
+                pos.y -= fwd.y;
+                break;
+                case PApplet.UP:
+                pos.y += fwd.y;
+                pos.x += fwd.x;
             break;
         }
     }
